@@ -11,25 +11,37 @@ Telegram.WebApp.onEvent("themeChanged", function () {
 document.addEventListener("DOMContentLoaded", () => {
   const initData = window.Telegram.WebApp.initData;
 
-  // Log the initData for testing
-  console.log("Initialization Data:", initData);
+  // Log the raw initData for testing
+  console.log("Raw Init Data:", initData);
 
-  const decodedData = atob(initData);
-  const dataObject = JSON.parse(decodedData);
+  // Fix URL-safe base64 to standard base64
+  const base64 = initData.replace(/-/g, "+").replace(/_/g, "/");
 
-  const infoDisplay = document.getElementById("info");
-  const avatarUrl = dataObject.user.photo_url || ""; // Get avatar URL
+  // Add padding if necessary
+  const padding =
+    base64.length % 4 === 0 ? "" : "=".repeat(4 - (base64.length % 4));
 
-  infoDisplay.innerHTML = `
-        <div id="userInfo">
-            <img id="avatar" src="${avatarUrl}" alt="User Avatar" width="50" height="50">
-            <div>
-                <h3>User Information</h3>
-                <p>ID: ${dataObject.user.id}</p>
-                <p>First Name: ${dataObject.user.first_name}</p>
-                <p>Last Name: ${dataObject.user.last_name}</p>
-                <p>Username: ${dataObject.user.username}</p>
+  let decodedData;
+  try {
+    decodedData = atob(base64 + padding);
+    const dataObject = JSON.parse(decodedData);
+
+    const infoDisplay = document.getElementById("info");
+    const avatarUrl = dataObject.user.photo_url || ""; // Get avatar URL
+
+    infoDisplay.innerHTML = `
+            <div id="userInfo">
+                <img id="avatar" src="${avatarUrl}" alt="User Avatar" width="50" height="50">
+                <div>
+                    <h3>User Information</h3>
+                    <p>ID: ${dataObject.user.id}</p>
+                    <p>First Name: ${dataObject.user.first_name}</p>
+                    <p>Last Name: ${dataObject.user.last_name}</p>
+                    <p>Username: ${dataObject.user.username}</p>
+                </div>
             </div>
-        </div>
-    `;
+        `;
+  } catch (error) {
+    console.error("Error decoding initData:", error);
+  }
 });
