@@ -8,6 +8,10 @@ body {
   box-sizing: border-box;
 }
 
+section {
+  height: 100svh;
+}
+
 .onboarding-container {
   display: flex;
   overflow: hidden;
