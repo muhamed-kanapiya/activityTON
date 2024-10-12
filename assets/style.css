@@ -52,7 +52,7 @@ section {
   font-size: 16px;
   line-height: 125%;
   color: #fff;
-  text-align: left;
+  padding: 0 10px;
 }
 
 .onboarding-slide img {
@@ -67,9 +67,12 @@ section {
 .slide-bottom {
   position: absolute;
   bottom: 52px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 15px;
 }
 
 .next-btn {
@@ -79,5 +82,5 @@ section {
   border: none;
   color: #fff;
   cursor: pointer;
-  margin-top: 20px;
+  width: 80%;
 }
