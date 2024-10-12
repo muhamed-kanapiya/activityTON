@@ -15,18 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   console.log("WebAppUser Data:", webAppUser);
 
-  // Display user information
-  const infoDisplay = document.getElementById("info");
+  // Display only the username inside the element with class 'user-name'
+  const userNameDisplay = document.querySelector(".user-name");
 
-  infoDisplay.innerHTML = `
-        <div id="userInfo">
-                        <div>
-                <h3>User Information</h3>
-                <p>ID: ${webAppUser.id}</p>
-                <p>First Name: ${webAppUser.first_name}</p>
-                <p>Last Name: ${webAppUser.last_name}</p>
-                <p>Username: ${webAppUser.username}</p>
-            </div>
-        </div>
-    `;
+  if (userNameDisplay && webAppUser.username) {
+    userNameDisplay.textContent = webAppUser.username;
+  }
 });
