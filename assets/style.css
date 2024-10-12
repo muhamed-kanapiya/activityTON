@@ -7,6 +7,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   background-color: #181819;
+  color: #fff;
 }
 
 section {
@@ -103,6 +104,7 @@ section {
   display: flex;
   align-items: center;
   column-gap: 7px;
+  margin-bottom: 10px;
 }
 
 .user-name {
@@ -163,4 +165,145 @@ section {
   align-items: center;
   flex-direction: column;
   row-gap: 3px;
+}
+
+.page-title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  text-align: center;
+  color: #fff;
+}
+
+.levels-block {
+  background-color: #282829;
+  border-radius: 8px;
+  padding: 18px 12px;
+}
+
+.level {
+  border-bottom: 1px solid #000;
+  padding-bottom: 3px;
+  margin-bottom: 3px;
+  display: flex;
+  justify-content: space-between;
+  font-size: smaller;
+}
+
+.level:last-child {
+  border-bottom: none; /* Remove border for the last item */
+  padding-bottom: 0; /* Optional: Adjust padding for consistency */
+  margin-bottom: 0; /* Optional: Adjust margin for consistency */
+}
+
+.homepage-content {
+  position: relative;
+}
+
+.activity-points {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hidden by default, positioned at the bottom */
+#task-block {
+  position: fixed;
+  bottom: -100%; /* Hide it offscreen */
+  left: 0;
+  right: 0;
+  background-color: white;
+  padding: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+  transition: bottom 0.5s ease; /* Slide effect */
+  z-index: 999; /* Ensure it's on top of other elements */
+}
+
+/* Class to show the block */
+.show {
+  bottom: 0; /* Bring it to view */
+}
+
+.daily-progress {
+  background-color: #282829;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.progress-container {
+  width: 100%;
+  height: 20px; /* Height of the progress bar */
+  background-color: #868686; /* Background of the full bar */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* To ensure the rounded corners are effective */
+  margin: 10px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%; /* Start at 0% */
+  background-color: #0098ea; /* Progress background color */
+  border-radius: 10px 0 0 10px; /* Rounded corners on the left side */
+  transition: width 0.5s ease; /* Smooth transition for progress */
+}
+
+.progress-percentage {
+  font-size: 18px;
+  color: #fff;
+}
+
+.inspiration-text {
+  font-size: 16px;
+  color: #fff;
+  margin-top: 10px;
+}
+
+//Tasks
+.task-container {
+  background-color: #282829;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.task-list {
+  margin-top: 10px;
+  color: #fff;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #0098ea;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+button.complete-btn {
+  background-color: #50a8eb;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.archive-btn {
+  background-color: #ff5252;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }

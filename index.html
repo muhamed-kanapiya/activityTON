@@ -6,7 +6,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Telegram Mini Apps Vanilla JS Sample App</title>
+    <title>ActivityTON - productivity boost app</title>
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 
@@ -52,17 +52,55 @@
                     <div class="level-icon">🌱</div>
                     <div class="user-info">
                         <div class="user-name">username</div>
-                        <div class="user-level">level</div>
+                        <div class="user-level">newcomer</div>
                     </div>
                 </div>
+                <div class="activity-points"><span>Activity Points:</span><span>1</span></div>
+
+                <b>You`ve got 5 tasks today</b>
+                <div class="daily-progress">
+                    <h3>Daily Progress</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <div class="progress-percentage" id="progress-percentage">%</div>
+                    <div class="inspiration-text" id="inspiration-text"></div>
+                </div>
+                <div class="task-container">
+                    <h2>Add a New Task</h2>
+                    <form id="task-form">
+                        <input type="text" id="task-name" placeholder="Task Name" required>
+                        <input type="url" id="task-url" placeholder="Task URL" required>
+                        <input type="datetime-local" id="task-datetime" required>
+                        <select id="task-repeat">
+                            <option value="none">Does not repeat</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                        <button type="submit">Add Task</button>
+                    </form>
+
+                    <h3>Today's Tasks</h3>
+                    <div id="today-tasks" class="task-list"></div>
+
+                    <h3>Archived Tasks</h3>
+                    <div id="archived-tasks" class="task-list"></div>
+                </div>
+
+
             </div>
         </section>
         <div class="bottom-menu">
-            <div class="menu-icon"><img src="./assets/svg/Home.svg" alt="">Home</div>
+            <div class="menu-icon"><a href="index.html"><img src="./assets/svg/Home.svg" alt=""></a>Home</div>
             <div class="menu-icon"><img src="./assets/svg/Templates.svg" alt="">Templates</div>
             <div class="add-button"><img src="./assets/svg/Add.svg" alt=""></div>
-            <div class="menu-icon"><img src="./assets/svg/Gift.svg" alt="">Levels</div>
+            <div class="menu-icon"><a href="Levels.html"><img src="./assets/svg/Gift.svg" alt=""></a>Levels</div>
             <div class="menu-icon"><img src="./assets/svg/Profile.svg" alt="">Profile</div>
+        </div>
+        <div id="task-block" class="task-slide">
+            <!-- Your content goes here -->
+            <p>Add your new task details here!</p>
         </div>
     </main>
 
