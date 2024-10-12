@@ -8,40 +8,37 @@ Telegram.WebApp.onEvent("themeChanged", function () {
   document.documentElement.className = Telegram.WebApp.colorScheme;
 });
 
+//initData
 document.addEventListener("DOMContentLoaded", () => {
   const initData = window.Telegram.WebApp.initData;
 
   // Log the raw initData for testing
   console.log("Raw Init Data:", initData);
 
-  // Fix URL-safe base64 to standard base64
-  const base64 = initData.replace(/-/g, "+").replace(/_/g, "/");
+  // Decode the URL-encoded string
+  const decodedInitData = decodeURIComponent(initData);
+  console.log("Decoded Init Data:", decodedInitData);
 
-  // Add padding if necessary
-  const padding =
-    base64.length % 4 === 0 ? "" : "=".repeat(4 - (base64.length % 4));
+  // Parse the query string into an object
+  const params = new URLSearchParams(decodedInitData);
+  const userJson = params.get("user"); // Extract user JSON string
+  const userObject = JSON.parse(userJson); // Parse the user JSON string
 
-  let decodedData;
-  try {
-    decodedData = atob(base64 + padding);
-    const dataObject = JSON.parse(decodedData);
+  // Display user information
+  const infoDisplay = document.getElementById("info");
+  const avatarUrl = userObject.photo_url || ""; // Use the appropriate property if it exists
 
-    const infoDisplay = document.getElementById("info");
-    const avatarUrl = dataObject.user.photo_url || ""; // Get avatar URL
-
-    infoDisplay.innerHTML = `
-            <div id="userInfo">
-                <img id="avatar" src="${avatarUrl}" alt="User Avatar" width="50" height="50">
-                <div>
-                    <h3>User Information</h3>
-                    <p>ID: ${dataObject.user.id}</p>
-                    <p>First Name: ${dataObject.user.first_name}</p>
-                    <p>Last Name: ${dataObject.user.last_name}</p>
-                    <p>Username: ${dataObject.user.username}</p>
-                </div>
+  infoDisplay.innerHTML = `
+        <div id="userInfo">
+            <img id="avatar" src="${avatarUrl}" alt="User Avatar" width="50" height="50">
+            <div>
+                <h3>User Information</h3>
+                <p>ID: ${userObject.id}</p>
+                <p>First Name: ${userObject.first_name}</p>
+                <p>Last Name: ${userObject.last_name}</p>
+                <p>Username: ${userObject.username}</p>
+                <p>Language Code: ${userObject.language_code}</p>
             </div>
-        `;
-  } catch (error) {
-    console.error("Error decoding initData:", error);
-  }
+        </div>
+    `;
 });
