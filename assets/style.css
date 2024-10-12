@@ -17,7 +17,7 @@ section {
 .onboarding-container {
   display: flex;
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   position: relative;
 }
@@ -128,6 +128,19 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.bottom-menu,
+.homepage-content {
+  opacity: 0; /* Initially hidden */
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.bottom-menu.visible,
+.homepage-content.visible {
+  opacity: 1;
+  visibility: visible; /* Make visible */
 }
 
 .add-button {

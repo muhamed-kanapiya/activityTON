@@ -17,13 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Display user information
   const infoDisplay = document.getElementById("info");
-  const avatarUrl =
-    webAppUser.photo_url || "https://example.com/default-avatar.png"; // Fallback to a default avatar
 
   infoDisplay.innerHTML = `
         <div id="userInfo">
-            <img id="avatar" src="${avatarUrl}" alt="User Avatar" width="50" height="50">
-            <div>
+                        <div>
                 <h3>User Information</h3>
                 <p>ID: ${webAppUser.id}</p>
                 <p>First Name: ${webAppUser.first_name}</p>
