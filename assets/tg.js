@@ -8,36 +8,27 @@ Telegram.WebApp.onEvent("themeChanged", function () {
   document.documentElement.className = Telegram.WebApp.colorScheme;
 });
 
-//initData
+//userData
 document.addEventListener("DOMContentLoaded", () => {
-  const initData = window.Telegram.WebApp.initData;
+  // Access the WebAppUser object from initDataUnsafe
+  const webAppUser = window.Telegram.WebApp.initDataUnsafe.user;
 
-  // Log the raw initData for testing
-  console.log("Raw Init Data:", initData);
-
-  // Decode the URL-encoded string
-  const decodedInitData = decodeURIComponent(initData);
-  console.log("Decoded Init Data:", decodedInitData);
-
-  // Parse the query string into an object
-  const params = new URLSearchParams(decodedInitData);
-  const userJson = params.get("user"); // Extract user JSON string
-  const userObject = JSON.parse(userJson); // Parse the user JSON string
+  console.log("WebAppUser Data:", webAppUser);
 
   // Display user information
   const infoDisplay = document.getElementById("info");
-  const avatarUrl = userObject.photo_url || ""; // Use the appropriate property if it exists
+  const avatarUrl =
+    webAppUser.photo_url || "https://example.com/default-avatar.png"; // Fallback to a default avatar
 
   infoDisplay.innerHTML = `
         <div id="userInfo">
             <img id="avatar" src="${avatarUrl}" alt="User Avatar" width="50" height="50">
             <div>
                 <h3>User Information</h3>
-                <p>ID: ${userObject.id}</p>
-                <p>First Name: ${userObject.first_name}</p>
-                <p>Last Name: ${userObject.last_name}</p>
-                <p>Username: ${userObject.username}</p>
-                <p>Language Code: ${userObject.language_code}</p>
+                <p>ID: ${webAppUser.id}</p>
+                <p>First Name: ${webAppUser.first_name}</p>
+                <p>Last Name: ${webAppUser.last_name}</p>
+                <p>Username: ${webAppUser.username}</p>
             </div>
         </div>
     `;
