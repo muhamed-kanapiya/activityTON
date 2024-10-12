@@ -21,7 +21,7 @@ body {
   transition: transform 0.5s ease-in-out;
   text-align: center;
   background-color: #181819;
-  padding: 15px;
+  position: relative;
 }
 
 .onboarding-slide h2 {
@@ -48,11 +48,23 @@ body {
   font-size: 16px;
   line-height: 125%;
   color: #fff;
+  text-align: left;
 }
 
-img {
+.onboarding-slide img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   max-width: 70%;
   margin: 20px auto;
+  transform: translate(-50%, -50%);
+}
+
+.slide-bottom {
+  position: absolute;
+  bottom: 52px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .next-btn {
