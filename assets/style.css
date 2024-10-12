@@ -156,3 +156,9 @@ section {
   justify-content: center;
   transform: translateY(-50%);
 }
+
+.menu-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
