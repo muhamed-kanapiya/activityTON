@@ -10,6 +10,10 @@ Telegram.WebApp.onEvent("themeChanged", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
   const initData = window.Telegram.WebApp.initData;
+
+  // Log the initData for testing
+  console.log("Initialization Data:", initData);
+
   const decodedData = atob(initData);
   const dataObject = JSON.parse(decodedData);
 
