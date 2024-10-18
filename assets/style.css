@@ -15,6 +15,10 @@ section {
   padding: 20px;
 }
 
+main {
+  transition: filter 0.5s ease; /* Smooth transition for blur */
+}
+
 .onboarding-container {
   display: flex;
   overflow: hidden;
@@ -121,15 +125,22 @@ section {
   color: #868686;
 }
 
-.bottom-menu {
+.bottom {
   position: fixed;
   bottom: 0;
-  width: 100%;
   background-color: #282829;
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  width: 100%;
+}
+
+.bottom-menu {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: #fff;
   font-size: 12px;
   text-align: center;
@@ -156,7 +167,11 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(-50%);
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, 50%);
 }
 
 .menu-icon {
@@ -165,6 +180,10 @@ section {
   align-items: center;
   flex-direction: column;
   row-gap: 3px;
+}
+
+.menu-icon img {
+  width: 20px;
 }
 
 .page-title {
@@ -211,99 +230,55 @@ section {
   justify-content: center;
 }
 
-/* Hidden by default, positioned at the bottom */
-#task-block {
+/* Hidden block fixed at the bottom */
+.task-block {
   position: fixed;
-  bottom: -100%; /* Hide it offscreen */
+  bottom: 0;
   left: 0;
-  right: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  visibility: hidden; /* Initially hidden */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* The content block that will slide up */
+.task-block-content {
   background-color: white;
   padding: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
-  transition: bottom 0.5s ease; /* Slide effect */
-  z-index: 999; /* Ensure it's on top of other elements */
-}
-
-/* Class to show the block */
-.show {
-  bottom: 0; /* Bring it to view */
-}
-
-.daily-progress {
-  background-color: #282829;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px 0;
-  text-align: center;
-}
-
-.progress-container {
+  border-radius: 12px 12px 0 0;
   width: 100%;
-  height: 20px; /* Height of the progress bar */
-  background-color: #868686; /* Background of the full bar */
-  border-radius: 10px; /* Rounded corners */
-  overflow: hidden; /* To ensure the rounded corners are effective */
-  margin: 10px 0;
+  max-width: 500px;
+  transform: translateY(100%); /* Start off-screen */
+  transition: transform 0.5s ease;
 }
 
-.progress-bar {
-  height: 100%;
-  width: 0%; /* Start at 0% */
-  background-color: #0098ea; /* Progress background color */
-  border-radius: 10px 0 0 10px; /* Rounded corners on the left side */
-  transition: width 0.5s ease; /* Smooth transition for progress */
-}
-
-.progress-percentage {
-  font-size: 18px;
-  color: #fff;
-}
-
-.inspiration-text {
-  font-size: 16px;
-  color: #fff;
-  margin-top: 10px;
-}
-
-//Tasks
-.task-container {
-  background-color: #282829;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px 0;
-}
-
-.task-list {
-  margin-top: 10px;
-  color: #fff;
-}
-
-.task-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* The close button styling */
+#close-task-block {
+  background-color: red;
+  color: white;
+  border: none;
   padding: 10px;
-  border: 1px solid #0098ea;
+  cursor: pointer;
   border-radius: 5px;
-  margin-bottom: 10px;
 }
 
-button.complete-btn {
-  background-color: #50a8eb;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
+/* Show the task block with animations */
+.task-block.active {
+  visibility: visible;
+  opacity: 1;
 }
 
-button.archive-btn {
-  background-color: #ff5252;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
+/* Slide the content up into view */
+.task-block.active .task-block-content {
+  transform: translateY(0); /* Slide content into view */
+}
+
+/* Apply blur only to the main element when task block is visible */
+.blur-main {
+  filter: blur(5px);
 }
