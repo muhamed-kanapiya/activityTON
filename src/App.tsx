@@ -27,8 +27,11 @@ const AppContent = () => {
 };
 
 function App() {
+  // Get the basename from package.json homepage or default to '/'
+  const basename = process.env.PUBLIC_URL || '/';
+
   return (
-    <Router>
+    <Router basename={basename}>
       <AppContent />
     </Router>
   );
