@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Onboarding from './components/Onboarding';
 import TaskList from './components/TaskList';
 import Levels from './components/Levels';
@@ -16,7 +16,8 @@ const AppContent = () => {
       <main className="main-content">
         {showHeader && <UserHeader />}
         <Routes>
-          <Route path="/" element={<Onboarding />} />
+          {/* Temporarily redirect root to tasks */}
+          <Route path="/" element={<Navigate to="/tasks" replace />} />
           <Route path="/tasks" element={<TaskList />} />
           <Route path="/levels" element={<Levels />} />
         </Routes>
@@ -27,7 +28,6 @@ const AppContent = () => {
 };
 
 function App() {
-  // Get the basename from package.json homepage or default to '/'
   const basename = process.env.PUBLIC_URL || '/';
 
   return (
